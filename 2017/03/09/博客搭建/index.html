@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Hexo," />
 
 
 
@@ -93,15 +93,17 @@
 
 
 
-<meta name="description" content="我就是我，不一样的烟火！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="蔚蓝博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="这是一款基于GitHub做服务器，搭载Hexo个人博客框架，采用自己域名的博客系统。">
+<meta name="keywords" content="Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客搭建">
+<meta property="og:url" content="http://yoursite.com/2017/03/09/博客搭建/index.html">
 <meta property="og:site_name" content="蔚蓝博客">
-<meta property="og:description" content="我就是我，不一样的烟火！">
+<meta property="og:description" content="这是一款基于GitHub做服务器，搭载Hexo个人博客框架，采用自己域名的博客系统。">
+<meta property="og:updated_time" content="2017-06-14T08:42:03.074Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="蔚蓝博客">
-<meta name="twitter:description" content="我就是我，不一样的烟火！">
+<meta name="twitter:title" content="博客搭建">
+<meta name="twitter:description" content="这是一款基于GitHub做服务器，搭载Hexo个人博客框架，采用自己域名的博客系统。">
 
 
 
@@ -129,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/09/博客搭建/"/>
 
 
 
 
 
-  <title>蔚蓝博客</title>
+  <title>博客搭建 | 蔚蓝博客</title>
   
 
 
@@ -170,9 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -285,9 +285,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -313,9 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/09/博客搭建/" itemprop="url">博客搭建</a></h1>
+          <h1 class="post-title" itemprop="name headline">博客搭建</h1>
         
 
         <div class="post-meta">
@@ -373,6 +371,10 @@
           
 
           
+              <div class="post-description">
+                  这是一款基于GitHub做服务器，搭载Hexo个人博客框架，采用自己域名的博客系统。
+              </div>
+          
 
         </div>
       </header>
@@ -384,50 +386,103 @@
       
 
       
+        <blockquote>
+<p>Git  GitHub  Node.js  Hexo  Next</p>
+</blockquote>
+<p>话不多说直接开搞！come on ！</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h4 id="创建GitHub并在其中创建仓库"><a href="#创建GitHub并在其中创建仓库" class="headerlink" title="创建GitHub并在其中创建仓库"></a>创建GitHub并在其中创建仓库</h4><h4 id="安装Node-js和安装Git，这里就话不多说。"><a href="#安装Node-js和安装Git，这里就话不多说。" class="headerlink" title="安装Node.js和安装Git，这里就话不多说。"></a>安装Node.js和安装Git，这里就话不多说。</h4><h4 id="为自己的GitHub配置SSH秘钥"><a href="#为自己的GitHub配置SSH秘钥" class="headerlink" title="为自己的GitHub配置SSH秘钥"></a>为自己的GitHub配置SSH秘钥</h4><pre><code>a.进入到本机所在的.ssh文件夹下，大概位置“C:\用户\你的用户名\.ssh”
+b.然后在这个文件夹下打卡Git黑窗口，执行$ ssh-keygen -t rsa -C &quot;你的Github邮箱&quot; 命令。
+c.输入密码，这个过程是为了防止你即使丢了秘钥别人也不能直接修改你的GitHub仓库
+d.秘钥生成成功之后，可以在本地的../.ssh目录下找到一个`id_rsa.pub`这个文件 ，然后打开复制全部代码。
+e.接下来打开GitHub，选择`Settings——SSH and GPG keys——New SSH key`，将我们上一步复制的代码粘贴到key中，title可以自定义。
+f.填写完成之后，选择`Add SSH key`按钮。
+</code></pre><h4 id="本地Hexo的创建"><a href="#本地Hexo的创建" class="headerlink" title="本地Hexo的创建"></a>本地Hexo的创建</h4><pre><code>a.打开Git黑窗口安装hexo， $ npm install hexo -g
+b.创建一个博客文件夹，目前这个文件要求是一个空文件夹
+c.执行$ hexo init，初始化Hexo
+d.执行$ hexo g，生成静态页
+e.执行$ heso s，启动本地服务
+到这一步，我们打开本地 http://localhost:4000/就能够看到我们配置的静态网页了
+</code></pre><h4 id="将本地Hexo部署到Github上"><a href="#将本地Hexo部署到Github上" class="headerlink" title="将本地Hexo部署到Github上"></a>将本地Hexo部署到Github上</h4><pre><code>a.打开本地`_config.yml` 文件，在文件的末尾添加 
+           # Deployment
+           ## Docs: https://hexo.io/docs/deployment.html
+           deploy:
+             type: git
+             repository: git@github.com:yinleiquan/yinleiquan.github.io.git
+             branch: master
+b.执行$ npm install hexo-deployer-git --save，安装git部署工具
+c.执行$ hexo d，将本地文件刷新提交到Github上
+到这一步，我们打开https://yinleiquan.github.io/网址就能看到我们部署上去的静态网页了
+</code></pre><h4 id="域名注册及解析"><a href="#域名注册及解析" class="headerlink" title="域名注册及解析"></a>域名注册及解析</h4><pre><code>a.选用自己喜欢的服务商，推荐可以使用阿里云进行域名的注册和解析
+b.回到本地的Hexo根目录下的 source文件夹中，新建一个文档文件，内容就是自己的域名，此处不需要加协议名，并且将这个文件更名为&quot;CNAME&quot;后缀也不要了。
+c.对Github进行设置，选择自己项目的仓库，点击setting选项，进入到设置界面，在Custom domain出输入自己的域名，点击SAVE即可。
+到这一步我们就已经可以访问http://yjlove.top/自己的域名博客了。
+</code></pre>
+      
+    </div>
+
+    <div>
+      
         
-          这是一款基于GitHub做服务器，搭载Hexo个人博客框架，采用自己域名的博客系统。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/09/博客搭建/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+
+      
+    </div>
+
+    <div>
+      
         
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="En-hakkore Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
-      
-    </div>
-
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -435,6 +490,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -454,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/icon.jpg"
@@ -528,6 +596,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.</span> <span class="nav-text">环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建GitHub并在其中创建仓库"><span class="nav-number">1.0.1.</span> <span class="nav-text">创建GitHub并在其中创建仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Node-js和安装Git，这里就话不多说。"><span class="nav-number">1.0.2.</span> <span class="nav-text">安装Node.js和安装Git，这里就话不多说。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为自己的GitHub配置SSH秘钥"><span class="nav-number">1.0.3.</span> <span class="nav-text">为自己的GitHub配置SSH秘钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地Hexo的创建"><span class="nav-number">1.0.4.</span> <span class="nav-text">本地Hexo的创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将本地Hexo部署到Github上"><span class="nav-number">1.0.5.</span> <span class="nav-text">将本地Hexo部署到Github上</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域名注册及解析"><span class="nav-number">1.0.6.</span> <span class="nav-text">域名注册及解析</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -653,10 +737,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
