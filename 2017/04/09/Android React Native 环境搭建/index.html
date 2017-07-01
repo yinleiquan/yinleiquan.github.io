@@ -101,7 +101,7 @@
 <meta property="og:description" content="火的不行不行的React，我是不是也应该蹭一把热度，不过话说回来，这种开发模式确实在开发周期上优势明显。">
 <meta property="og:image" content="http://yjlove.top/2017/04/09/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA01.png">
 <meta property="og:image" content="http://yjlove.top/2017/04/09/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA02.png">
-<meta property="og:updated_time" content="2017-06-15T06:18:40.269Z">
+<meta property="og:updated_time" content="2017-07-01T04:50:32.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android React Native 环境搭建">
 <meta name="twitter:description" content="火的不行不行的React，我是不是也应该蹭一把热度，不过话说回来，这种开发模式确实在开发周期上优势明显。">
@@ -383,8 +383,12 @@
 </blockquote>
 <p>话不多说直接开搞！come on ！</p>
 <h2 id="Windwos下环境搭建"><a href="#Windwos下环境搭建" class="headerlink" title="Windwos下环境搭建"></a>Windwos下环境搭建</h2><p>1.安装JDK，我觉得这一步也不用多说了吧，注意x86的、版本1.7、配置环境变量<br>2.下载SDK，这一步我也不想多说啥了，注意配置环境变量<br>3.下载node.js,这里我还是不想多说，到官网下载4.1版本以上就行，然后安装<br>4.下载git，这个就是更easy了，好了，都下好安好了，开始搞起<br>5.下载facebook的react吧</p>
-<p><em>a. 在git里边： git clone <a href="https://github.com/facebook/react-native.git" target="_blank" rel="external">https://github.com/facebook/react-native.git</a></em><br><em>b. 在cmd里边：cd react-native/react-native-cli</em><br><em>c  .npm install -g</em></p>
-<p>6.创建项目 react-native init 项目名称<br>7.开启服务 react-native start<br>8.打开Android Studio，找到本地的RN工程中的android下边的build.gradle然后打开这个RN中产生的Android项目</p>
+<p>方法一：直接使用npm方式，执行npm install -g react-native-cli，不过我个人不喜欢这种方式，因为我用了一边没好使</p>
+<p>方法二：使用git方式（推荐使用）<br><em>a. 在git里边： git clone <a href="https://github.com/facebook/react-native.git" target="_blank" rel="external">https://github.com/facebook/react-native.git</a></em><br><em>b. 在cmd里边：cd react-native/react-native-cli</em><br><em>c  .npm install -g</em></p>
+<p>6.创建项目 react-native init 项目名称，在初始化之前最好使用国内的镜像路径，因为有很多包是国外的，在安装是会因为网络超时或者访问不到而挂掉，改变镜像路径有两种方式。</p>
+<p>方法一：<br>在~\Roaming\npm\etc\npmrc中写入镜像<br>registry=<a href="https://registry.npm.taobao.org/" target="_blank" rel="external">https://registry.npm.taobao.org/</a><br>disturl=<a href="https://npm.taobao.org/dist" target="_blank" rel="external">https://npm.taobao.org/dist</a></p>
+<p>方法二：<br>执行下边的命令<br>npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="external">https://registry.npm.taobao.org</a><br>npm config set disturl <a href="https://npm.taobao.org/dist" target="_blank" rel="external">https://npm.taobao.org/dist</a> </p>
+<p>7.开启服务 react-native start<br>8.打开Android Studio，找到本地的RN工程中的android下边的build.gradle然后打开这个RN中产生的Android项目</p>
 <h2 id="RN调用Android原生模块方法"><a href="#RN调用Android原生模块方法" class="headerlink" title="RN调用Android原生模块方法"></a>RN调用Android原生模块方法</h2><p>1.用AS打开RN中的Android项目<br>2.在Android这边创建一个继承PreactContextBaseJavaModule的自定义模块，这个类中存放RN需要调用的方法，其中getName()方法中需要设置一个这个模块对外部的名字，这个是用来在RN中进行调用的，然后我们这里创建的方法需要加上@ReactMethod注解，这个是为了将这个方法暴露给RN<br>3.在Android这边创建一个实现ReactPackage接口的包管理器，这类中需要实现接口的三个方法我们只需要在创建原生模块方法中创建一个模块列表，并将上一步创建的自定义模块添加到这个列表中就可以了，其他两个方法返回Collections.emptyList()就可以了<br>4.在Android这边的MainApplication的getPackages()方法中，将上一步创建的包管理器添加到asList列表中就可以了，这个是为了加载我们自定义的包管理器及其其中的自定义模块<br>5.在RN这边添加facebook提供的NativeModules到import中，然后使用onPress={this.点击事件名字.bind(this)}，最后在点击事件中添加NativeModules.自定义模块.暴露的方法()，这样就实现了RN调用Android原生的方法了。</p>
 <h2 id="Windwos下对RN中的Android进行签名打包"><a href="#Windwos下对RN中的Android进行签名打包" class="headerlink" title="Windwos下对RN中的Android进行签名打包"></a>Windwos下对RN中的Android进行签名打包</h2><p>1.使用AS创建一个签名KEY，这一步贼简单就不多说了，并将生成的.jks文件存放到app下<br>2.因为这是一个RN项目所以不能用常规原生的签名方式，首先需要手动的在项目中添加签名</p>
 <p><em>a. 在gradle.properties中将签名信息封装一下，代码如下</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">android.useDeprecatedNdk=true</div><div class="line">MYAPP_RELEASE_STORE_FILE=ReactDemo.jks</div><div class="line">MYAPP_RELEASE_KEY_ALIAS=ReactDemo</div><div class="line">MYAPP_RELEASE_STORE_PASSWORD=123456</div><div class="line">MYAPP_RELEASE_KEY_PASSWORD=123456</div></pre></td></tr></table></figure></p>
