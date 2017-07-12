@@ -99,10 +99,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/02/Android屏幕适配/index.html">
 <meta property="og:site_name" content="蔚蓝博客">
 <meta property="og:description" content="咱们作为搞Android程序开发的，屏幕适配这一块一定是逃不掉的，那既然逃不了，那就干掉它。">
-<meta property="og:updated_time" content="2017-07-10T02:01:14.775Z">
+<meta property="og:image" content="c:/Users/YLQ/Desktop/myblog/public/2017/05/02/Android屏幕适配/01.jpg">
+<meta property="og:updated_time" content="2017-07-12T01:43:32.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 屏幕适配">
 <meta name="twitter:description" content="咱们作为搞Android程序开发的，屏幕适配这一块一定是逃不掉的，那既然逃不了，那就干掉它。">
+<meta name="twitter:image" content="c:/Users/YLQ/Desktop/myblog/public/2017/05/02/Android屏幕适配/01.jpg">
 
 
 
@@ -386,7 +388,7 @@
 <h4 id="先上几个屏幕适配的概念："><a href="#先上几个屏幕适配的概念：" class="headerlink" title="先上几个屏幕适配的概念："></a>先上几个屏幕适配的概念：</h4><p>1.屏幕像素密度：每英寸上的像素点数，单位dpi<br>2.屏幕分辨率：手机屏幕的像素点数，单位px<br>3.屏幕尺寸：手机对角线的大小，单位英寸<br>4.dp：android特有的  是一种密度计算，单位dip<br>5.sp：android用来规范字体大小的单位，可以在系统调整字体大小是发生变化</p>
 <h4 id="再说说dp与px的对应关系"><a href="#再说说dp与px的对应关系" class="headerlink" title="再说说dp与px的对应关系"></a>再说说dp与px的对应关系</h4><p>1.首先我们需要算出像素密度（dpi）<br>​    dpi = 根号下  高的平方 + 宽的平方 / 屏幕尺寸<br>2.然后有一个Android规定的对应表，这里以宽为例</p>
 <p>​    320 <em> 240        120                        1dp = 0.75px<br>​    480 </em> 320        160        BaseLine            1dp = 1px<br>​    800 <em> 480        240                        1dp = 1.5px<br>​    1280 </em> 720    320                        1dp = 2px<br>​    1920 * 1080    480                        1dp = 3px</p>
-<p>3.对应android工程下的dpi文件夹<br>​    ldpi            120<br>​    mdpi            160<br>​    hdpi            240<br>​    xhdpi        320<br>​    xxhdpi        480<br>​    xxxhdpi        640</p>
+<p>3.对应android工程下的dpi文件夹<br>​    ldpi            120<br>​    mdpi            160<br>​    hdpi            240<br>​    xhdpi        320<br>​    xxhdpi        480<br> <img src="C:\Users\YLQ\Desktop\myblog\public\2017\05\02\Android屏幕适配\01.jpg" alt="01"></p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>根据自己的项目的需求进行适配方案的选择。</p>
 <h4 id="布局适配"><a href="#布局适配" class="headerlink" title="布局适配"></a>布局适配</h4><p>​    这种方式基本不会用到，除非做平板适配，应为这种需要些多套布局，太耗费开发成本。    </p>
 <h4 id="权重适配"><a href="#权重适配" class="headerlink" title="权重适配"></a>权重适配</h4><p>​    在写布局时，能使用这种方式尽量就要使用这种方式，但是这种方式有一个局限，就是只能在线性布局中使用，简单说一下权重适配的原理：自身的大小 + 占剩余空间的比例</p>
