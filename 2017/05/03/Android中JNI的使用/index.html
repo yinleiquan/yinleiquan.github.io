@@ -93,19 +93,16 @@
 
 
 
-<meta name="description" content="火的不行不行的React，我是不是也应该蹭一把热度，不过话说回来，这种开发模式确实在开发周期上优势明显。">
+<meta name="description" content="当android中需要调用C库中的方法是，这时我们就需要使用JNI进行翻译了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android React Native 环境搭建">
-<meta property="og:url" content="http://yoursite.com/2017/04/09/Android React Native 环境搭建/index.html">
+<meta property="og:title" content="Android中JNI的使用">
+<meta property="og:url" content="http://yoursite.com/2017/05/03/Android中JNI的使用/index.html">
 <meta property="og:site_name" content="蔚蓝博客">
-<meta property="og:description" content="火的不行不行的React，我是不是也应该蹭一把热度，不过话说回来，这种开发模式确实在开发周期上优势明显。">
-<meta property="og:image" content="http://yjlove.top/2017/04/09/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA01.png">
-<meta property="og:image" content="http://yjlove.top/2017/04/09/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA02.png">
-<meta property="og:updated_time" content="2017-07-01T10:54:18.422Z">
+<meta property="og:description" content="当android中需要调用C库中的方法是，这时我们就需要使用JNI进行翻译了。">
+<meta property="og:updated_time" content="2017-07-12T02:02:56.134Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android React Native 环境搭建">
-<meta name="twitter:description" content="火的不行不行的React，我是不是也应该蹭一把热度，不过话说回来，这种开发模式确实在开发周期上优势明显。">
-<meta name="twitter:image" content="http://yjlove.top/2017/04/09/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA01.png">
+<meta name="twitter:title" content="Android中JNI的使用">
+<meta name="twitter:description" content="当android中需要调用C库中的方法是，这时我们就需要使用JNI进行翻译了。">
 
 
 
@@ -133,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/09/Android React Native 环境搭建/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/03/Android中JNI的使用/"/>
 
 
 
 
 
-  <title>Android React Native 环境搭建 | 蔚蓝博客</title>
+  <title>Android中JNI的使用 | 蔚蓝博客</title>
   
 
 
@@ -288,7 +285,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/09/Android React Native 环境搭建/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/Android中JNI的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="En-hakkore">
@@ -305,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android React Native 环境搭建</h1>
+          <h1 class="post-title" itemprop="name headline">Android中JNI的使用</h1>
         
 
         <div class="post-meta">
@@ -317,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-09T10:15:13+08:00">
-                2017-04-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T11:00:54+08:00">
+                2017-05-03
               </time>
             
 
@@ -340,8 +337,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React-Native/" itemprop="url" rel="index">
-                    <span itemprop="name">React Native</span>
+                  <a href="/categories/JNI/" itemprop="url" rel="index">
+                    <span itemprop="name">JNI</span>
                   </a>
                 </span>
 
@@ -364,7 +361,7 @@
 
           
               <div class="post-description">
-                  火的不行不行的React，我是不是也应该蹭一把热度，不过话说回来，这种开发模式确实在开发周期上优势明显。
+                  当android中需要调用C库中的方法是，这时我们就需要使用JNI进行翻译了。
               </div>
           
 
@@ -379,27 +376,32 @@
 
       
         <blockquote>
-<p>JDK    SDK    Node.js    Git    React Native    Gradle    Curl</p>
+<p>Android    JNI    C</p>
 </blockquote>
-<p>话不多说直接开搞！come on ！</p>
-<h2 id="Windwos下环境搭建"><a href="#Windwos下环境搭建" class="headerlink" title="Windwos下环境搭建"></a>Windwos下环境搭建</h2><p>1.安装JDK，我觉得这一步也不用多说了吧，注意x86的、版本1.7、配置环境变量<br>2.下载SDK，这一步我也不想多说啥了，注意配置环境变量（环境变量名称为ANDROID_HOME）<br>3.下载node.js,这里我还是不想多说，到官网下载4.1版本以上就行，然后安装<br>4.下载git，这个就是更easy了，好了，都下好安好了，开始搞起<br>5.下载facebook的react吧</p>
-<p>方法一：直接使用npm方式，执行npm install -g react-native-cli</p>
-<p>方法二：使用git方式<br><em>a. 在git里边： git clone <a href="https://github.com/facebook/react-native.git" target="_blank" rel="external">https://github.com/facebook/react-native.git</a></em><br><em>b. 在cmd里边：cd react-native/react-native-cli</em><br><em>c  .npm install -g</em></p>
-<p>6.创建项目 react-native init 项目名称，在初始化之前最好使用国内的镜像路径，因为有很多包是国外的，在安装是会因为网络超时或者访问不到而挂掉，改变镜像路径有两种方式。</p>
-<p>方法一：<br>在~\Roaming\npm\etc\npmrc中写入镜像<br>registry=<a href="https://registry.npm.taobao.org/" target="_blank" rel="external">https://registry.npm.taobao.org/</a><br>disturl=<a href="https://npm.taobao.org/dist" target="_blank" rel="external">https://npm.taobao.org/dist</a></p>
-<p>方法二：<br>执行下边的命令<br>npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="external">https://registry.npm.taobao.org</a><br>npm config set disturl <a href="https://npm.taobao.org/dist" target="_blank" rel="external">https://npm.taobao.org/dist</a> </p>
-<p>7.开启服务 react-native start<br>8.打开Android Studio，找到本地的RN工程中的android下边的build.gradle然后打开这个RN中产生的Android项目<br>9.开启也可以在开启模拟器的情况下，执行react-native run-android</p>
-<h2 id="RN调用Android原生模块方法"><a href="#RN调用Android原生模块方法" class="headerlink" title="RN调用Android原生模块方法"></a>RN调用Android原生模块方法</h2><p>1.用AS打开RN中的Android项目<br>2.在Android这边创建一个继承PreactContextBaseJavaModule的自定义模块，这个类中存放RN需要调用的方法，其中getName()方法中需要设置一个这个模块对外部的名字，这个是用来在RN中进行调用的，然后我们这里创建的方法需要加上@ReactMethod注解，这个是为了将这个方法暴露给RN<br>3.在Android这边创建一个实现ReactPackage接口的包管理器，这类中需要实现接口的三个方法我们只需要在创建原生模块方法中创建一个模块列表，并将上一步创建的自定义模块添加到这个列表中就可以了，其他两个方法返回Collections.emptyList()就可以了<br>4.在Android这边的MainApplication的getPackages()方法中，将上一步创建的包管理器添加到asList列表中就可以了，这个是为了加载我们自定义的包管理器及其其中的自定义模块<br>5.在RN这边添加facebook提供的NativeModules到import中，然后使用onPress={this.点击事件名字.bind(this)}，最后在点击事件中添加NativeModules.自定义模块.暴露的方法()，这样就实现了RN调用Android原生的方法了。</p>
-<h2 id="Windwos下对RN中的Android进行签名打包"><a href="#Windwos下对RN中的Android进行签名打包" class="headerlink" title="Windwos下对RN中的Android进行签名打包"></a>Windwos下对RN中的Android进行签名打包</h2><p>1.使用AS创建一个签名KEY，这一步贼简单就不多说了，并将生成的.jks文件存放到app下<br>2.因为这是一个RN项目所以不能用常规原生的签名方式，首先需要手动的在项目中添加签名</p>
-<p><em>a. 在gradle.properties中将签名信息封装一下，代码如下</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">android.useDeprecatedNdk=true</div><div class="line">MYAPP_RELEASE_STORE_FILE=ReactDemo.jks</div><div class="line">MYAPP_RELEASE_KEY_ALIAS=ReactDemo</div><div class="line">MYAPP_RELEASE_STORE_PASSWORD=123456</div><div class="line">MYAPP_RELEASE_KEY_PASSWORD=123456</div></pre></td></tr></table></figure></p>
-<p><em>b.然后在app层的build.gradle中手动添加签名key，代码如下</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">igningConfigs &#123;</div><div class="line">    release &#123;</div><div class="line">        storeFile file(MYAPP_RELEASE_STORE_FILE)</div><div class="line">        storePassword MYAPP_RELEASE_STORE_PASSWORD</div><div class="line">        keyAlias MYAPP_RELEASE_KEY_ALIAS</div><div class="line">        keyPassword MYAPP_RELEASE_KEY_PASSWORD</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">buildTypes &#123;</div><div class="line">    release &#123;</div><div class="line">        minifyEnabled true</div><div class="line">        proguardFiles getDefaultProguardFile(&quot;proguard-android.txt&quot;), &quot;proguard-rules.pro&quot;</div><div class="line">        signingConfig signingConfigs.release</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>效果截图：<br><img src="http://yjlove.top/2017/04/09/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA01.png" alt="Android React Native 环境搭建01"><br><em>c.在app/src/main下创建一个assets文件夹用于生成index.android.bundle文件</em></p>
-<p>3.上一步已将android基本配置完成，下面进行index.android.bundle的生成</p>
-<p><em>a.下载curl.exe，这个软件可以在官网下载，下载Win64 x86_64 CAB版本的，然后配置环境变量</em><br><em>b.CURL_HOME   “你的curl目录位置\curl-7.43.0”</em><br><em>path     在末尾添加“;%CURL_HOME%\I386”</em><br><em>c.测试是否安装成功，cmd黑窗口执行curl –help</em></p>
-<p>4.上一步安装curl完成之后，在你工程目录下执行</p>
-<p><em>a.curl -k “<a href="http://localhost:8081/index.android.bundle" target="_blank" rel="external">http://localhost:8081/index.android.bundle</a>“ &gt;</em><br><em>android/app/src/main/assets/index.android.bundle</em><br><em>b.生成index.android.bundle文件</em><br>效果如图：<br><img src="http://yjlove.top/2017/04/09/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA02.png" alt="Android React Native 环境搭建02"></p>
-<p>5.在AS工程的Proguard做一些防止混淆的操作，防止工程中的一些第三方包被混淆了，导致应用挂掉， 其中enableProguardInReleaseBuilds 换为true，这个换不换都行<br>6.打包生成apk，很抱歉这一步也不能像常规app一样，所以只能敲命令喽</p>
-<p><em>a.下载或者你本地的as中有gradle，那就直接配置环境变量就行和第3步大同小异，不在重复，可以在黑窗口中执行gradle -v来确认是否安装成功</em><br><em>b.安装gradle之后，在项目工程/android/目录下执行gradle clean 清理项目中安装包，然后再执行gradle assembleRelease命令生成已签名的apk，这个apk会在android/app/bulid/outputs/apk/目录中。</em></p>
+<p>因为我们Android端主要使用AS进行开发，所以本篇主要讲解JNI在AS中的使用方法。</p>
+<p>话不多说，直接开搞！come on ！</p>
+<h2 id="AndroidStudio中JNI的使用"><a href="#AndroidStudio中JNI的使用" class="headerlink" title="AndroidStudio中JNI的使用"></a>AndroidStudio中JNI的使用</h2><h4 id="环境要求AS2-2以上，然后自动下载ndk"><a href="#环境要求AS2-2以上，然后自动下载ndk" class="headerlink" title="环境要求AS2.2以上，然后自动下载ndk"></a>环境要求AS2.2以上，然后自动下载ndk</h4><h4 id="创建一个工程"><a href="#创建一个工程" class="headerlink" title="创建一个工程"></a>创建一个工程</h4><h4 id="新建Android-mk文件"><a href="#新建Android-mk文件" class="headerlink" title="新建Android.mk文件"></a>新建Android.mk文件</h4><figure class="highlight mk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">LOCAL_PATH       :=  <span class="variable">$(<span class="built_in">call</span> my-<span class="built_in">dir</span>)</span></div><div class="line"><span class="comment"># 设置工作目录，而my-dir则会返回Android.mk文件所在的目录</span></div><div class="line"></div><div class="line"><span class="keyword">include</span>              <span class="variable">$(CLEAR_VARS)</span></div><div class="line"><span class="comment"># 清除几乎所有以LOCAL——PATH开头的变量（不包括LOCAL_PATH）</span></div><div class="line"></div><div class="line">LOCAL_MODULE     :=  hello_jni</div><div class="line"><span class="comment"># 设置模块的名称，即编译出来.so文件名</span></div><div class="line"><span class="comment"># 注，要和上述步骤中build.gradle中NDK节点设置的名字相同</span></div><div class="line"></div><div class="line">LOCAL_SRC_FILES  :=  test.cpp</div><div class="line"><span class="comment"># 指定参与模块编译的C/C++源文件名</span></div><div class="line"></div><div class="line"><span class="keyword">include</span>              <span class="variable">$(BUILD_SHARED_LIBRARY)</span></div><div class="line"><span class="comment"># 指定生成的静态库或者共享库在运行时依赖的共享库模块列表。</span></div></pre></td></tr></table></figure>
+<h4 id="新建Application-mk文件"><a href="#新建Application-mk文件" class="headerlink" title="新建Application.mk文件"></a>新建Application.mk文件</h4><pre><code>APP_ABI := rmeabi x86 mips
+# 最常用的APP_ABI字段：指定需要基于哪些CPU平台的.so文件
+# 常见的平台有armeabi x86 mips，其中移动设备主要是armeabi平台
+# 默认情况下，Android平台会生成所有平台的.so文件，即同APP_ABI := armeabi x86 mips
+</code></pre><h4 id="新建test-cpp文件"><a href="#新建test-cpp文件" class="headerlink" title="新建test.cpp文件"></a>新建test.cpp文件</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;jni.h&gt;</span></span></div><div class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span></div><div class="line">	&#123;</div><div class="line">    	<span class="function">JNIEXPORT jstring JNICALL <span class="title">Java_com_lzc_ndktest_MainActivity_getFromJNI</span><span class="params">(JNIEnv *env, jobject obj )</span></span>&#123;</div><div class="line">       	<span class="comment">// 参数说明</span></div><div class="line">       	<span class="comment">// 1. JNIEnv：代表了VM里面的环境，本地的代码可以通过该参数与Java代码进行操作</span></div><div class="line">       	<span class="comment">// 2. obj：定义JNI方法的类的一个本地引用（this）</span></div><div class="line">    	<span class="keyword">return</span> env -&gt; NewStringUTF(<span class="string">"Hello i am from JNI!"</span>);</div><div class="line">    	<span class="comment">// 上述代码是返回一个String类型的"Hello i am from JNI!"字符串</span></div><div class="line">    	&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h4 id="Java-com-lzc-ndktest-MainActivity-getFromJNI-命名规则"><a href="#Java-com-lzc-ndktest-MainActivity-getFromJNI-命名规则" class="headerlink" title="Java_com_lzc_ndktest_MainActivity_getFromJNI 命名规则"></a>Java_com_lzc_ndktest_MainActivity_getFromJNI 命名规则</h4><p>a.Java是必写后接_<br>b.中间的com_lzc<em>ndktest是将应用包名com.lzc.ndktest的.替换成即可后接<br>c.MainActivity是加载动态库使用的类文件<br>d.getFromJNI 是jni方法的名称<br>e.如果包名中存在</em> 则对应的替换成_1</p>
+<h4 id="执行ndk-build"><a href="#执行ndk-build" class="headerlink" title="执行ndk-build"></a>执行ndk-build</h4><p>定位到jni目录下 执行ndk-build，完成后在工程目录的main文件夹下生成libs和obj文件夹，将main目录下的libs文件夹里面的文件复制到工程目录下的libs中</p>
+<h4 id="配置app的build-gradle文件"><a href="#配置app的build-gradle文件" class="headerlink" title="配置app的build.gradle文件"></a>配置app的build.gradle文件</h4><pre><code>android{
+    ....
+     sourceSets {
+        main {
+                jniLibs.srcDirs = [&apos;libs&apos;]
+//            jniLibs.srcDir &apos;src/main/libs&apos;
+//            java.srcDirs += &apos;src/main/jni/src&apos;
+//            assets.srcDirs += &apos;src/main/jni/assets&apos;
+            }
+        }
+    ....
+}
+</code></pre><h4 id="在MainActivity中添加如下代码"><a href="#在MainActivity中添加如下代码" class="headerlink" title="在MainActivity中添加如下代码"></a>在MainActivity中添加如下代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//加载动态库 不用写前面的lib </span></div><div class="line"><span class="keyword">static</span> &#123;</div><div class="line">    System.loadLibrary(<span class="string">"hello_jni"</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 步骤2:定义在JNI中实现的方法</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> String <span class="title">getFromJNI</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<h4 id="调用事例"><a href="#调用事例" class="headerlink" title="调用事例"></a>调用事例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">       setContentView(R.layout.activity_main);</div><div class="line">       TextView textView= (TextView) findViewById(R.id.text_hello_jni);</div><div class="line">       textView.setText(getFromJNI());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -452,8 +454,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/09/博客搭建/" rel="next" title="博客搭建">
-                <i class="fa fa-chevron-left"></i> 博客搭建
+              <a href="/2017/05/02/Android屏幕适配/" rel="next" title="Android 屏幕适配">
+                <i class="fa fa-chevron-left"></i> Android 屏幕适配
               </a>
             
           </div>
@@ -461,10 +463,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/09/Android React Native 基础/" rel="prev" title="Android React Native 基础">
-                Android React Native 基础 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -595,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windwos下环境搭建"><span class="nav-number">1.</span> <span class="nav-text">Windwos下环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RN调用Android原生模块方法"><span class="nav-number">2.</span> <span class="nav-text">RN调用Android原生模块方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windwos下对RN中的Android进行签名打包"><span class="nav-number">3.</span> <span class="nav-text">Windwos下对RN中的Android进行签名打包</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AndroidStudio中JNI的使用"><span class="nav-number">1.</span> <span class="nav-text">AndroidStudio中JNI的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境要求AS2-2以上，然后自动下载ndk"><span class="nav-number">1.0.1.</span> <span class="nav-text">环境要求AS2.2以上，然后自动下载ndk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个工程"><span class="nav-number">1.0.2.</span> <span class="nav-text">创建一个工程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建Android-mk文件"><span class="nav-number">1.0.3.</span> <span class="nav-text">新建Android.mk文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建Application-mk文件"><span class="nav-number">1.0.4.</span> <span class="nav-text">新建Application.mk文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建test-cpp文件"><span class="nav-number">1.0.5.</span> <span class="nav-text">新建test.cpp文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-com-lzc-ndktest-MainActivity-getFromJNI-命名规则"><span class="nav-number">1.0.6.</span> <span class="nav-text">Java_com_lzc_ndktest_MainActivity_getFromJNI 命名规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行ndk-build"><span class="nav-number">1.0.7.</span> <span class="nav-text">执行ndk-build</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置app的build-gradle文件"><span class="nav-number">1.0.8.</span> <span class="nav-text">配置app的build.gradle文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在MainActivity中添加如下代码"><span class="nav-number">1.0.9.</span> <span class="nav-text">在MainActivity中添加如下代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用事例"><span class="nav-number">1.0.10.</span> <span class="nav-text">调用事例</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
