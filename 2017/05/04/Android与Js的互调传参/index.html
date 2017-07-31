@@ -1,0 +1,787 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="想必大家都会对android和js之间怎样产生联系产生极大的兴趣，那么今天就来说说android和js的那些事儿。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android与Js的互调传参">
+<meta property="og:url" content="http://yoursite.com/2017/05/04/Android与Js的互调传参/index.html">
+<meta property="og:site_name" content="蔚蓝博客">
+<meta property="og:description" content="想必大家都会对android和js之间怎样产生联系产生极大的兴趣，那么今天就来说说android和js的那些事儿。">
+<meta property="og:image" content="http://yjlove.top/2017/04/09/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA01.png">
+<meta property="og:updated_time" content="2017-07-31T05:36:30.416Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android与Js的互调传参">
+<meta name="twitter:description" content="想必大家都会对android和js之间怎样产生联系产生极大的兴趣，那么今天就来说说android和js的那些事儿。">
+<meta name="twitter:image" content="http://yjlove.top/2017/04/09/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/04/Android与Js的互调传参/"/>
+
+
+
+
+
+  <title>Android与Js的互调传参 | 蔚蓝博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?89132f5058ab52afa295cc0a7b67055f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">蔚蓝博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/04/Android与Js的互调传参/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="En-hakkore">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蔚蓝博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android与Js的互调传参</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-04T10:15:13+08:00">
+                2017-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hybrid-App/" itemprop="url" rel="index">
+                    <span itemprop="name">Hybrid App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  想必大家都会对android和js之间怎样产生联系产生极大的兴趣，那么今天就来说说android和js的那些事儿。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Android   Html   JavaScript</p>
+</blockquote>
+<p>话不多说直接开搞！come on ！</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>咱们这一篇讲的是Js+Android+原生webview的混合开发模式，</p>
+<p>1.在需要展示js界面的原生界面创建一个WebView并为其设定初始设置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//进行webwiev的一堆设置</span></div><div class="line"><span class="comment">//开启本地文件读取（默认为true，不设置也可以）</span></div><div class="line">mWebView.getSettings().setAllowFileAccess(<span class="keyword">true</span>);</div><div class="line"><span class="comment">//设置编码</span></div><div class="line">mWebView.getSettings().setDefaultTextEncodingName(<span class="string">"utf-8"</span>);</div><div class="line"><span class="comment">// 设置可以支持缩放</span></div><div class="line">mWebView.getSettings().setSupportZoom(<span class="keyword">true</span>);</div><div class="line"><span class="comment">// 设置出现缩放工具</span></div><div class="line">mWebView.getSettings().setBuiltInZoomControls(<span class="keyword">true</span>);</div><div class="line"><span class="comment">// 清除浏览器缓存</span></div><div class="line">mWebView.clearCache(<span class="keyword">true</span>);</div><div class="line"><span class="comment">// 开启脚本支持</span></div><div class="line">mWebView.getSettings().setJavaScriptEnabled(<span class="keyword">true</span>);</div><div class="line"><span class="comment">//在当前页面打开链接了</span></div><div class="line">mWebView.setWebViewClient(<span class="keyword">new</span> WebViewClient() &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123;</div><div class="line">        view.loadUrl(url);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"><span class="comment">//js加上这个就好啦！</span></div><div class="line">mWebView.setWebChromeClient(<span class="keyword">new</span> WebChromeClient() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onJsAlert</span><span class="params">(WebView view, String url, String message, JsResult result)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onJsAlert(view, url, message, result);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>2.在android端的app/src/main/下创建assets资源文件目录，并将需要加载的html文件放在这个目录下边</p>
+<p><img src="http://yjlove.top/2017/04/09/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Android%20React%20Native%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA01.png" alt="Android React Native 环境搭建01"></p>
+<p>3.在webview设置中添加加载本地文件代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取Assets目录下的文件</span></div><div class="line">mWebView.loadUrl(<span class="string">"file:///android_asset/index.html"</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="Js调用Android方法"><a href="#Js调用Android方法" class="headerlink" title="Js调用Android方法"></a>Js调用Android方法</h2><p>Js调用Android方法，并向其传递参数（调用原生Toast方法，并向其传递显示的内容）</p>
+<p>android端：<br>1.创建一个类用来专门存放需要被Js调用的方法集，其中的方法上一定要添加@JavascriptInterface注解，这个使用来向Js暴露原生中的方法的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaScripService</span> </span>&#123;</div><div class="line">    <span class="meta">@JavascriptInterface</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(String msg)</span></span>&#123;</div><div class="line">        ToastUtil.showShort(AppContext.getInstance(), msg);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2.在设置webview的类中添加相应的设置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// android向js传递方法</span></div><div class="line">JavaScripService jsInterface = <span class="keyword">new</span> JavaScripService();<span class="comment">// 实例化需要暴露给Js的方法集</span></div><div class="line"><span class="comment">// test是一个标志，之后会在Js代码中通过这个标志来导入原生方法（可以根据自己需求随意设定）</span></div><div class="line">mWebView.addJavascriptInterface(jsInterface, <span class="string">"test"</span>);</div></pre></td></tr></table></figure></p>
+<p>html端：<br>1.通过window的方式直接在标签事件属性中进行添加方法，其中test就是上一步在android端进行设置标签<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"window.test.showToast('JS调用并传递参数给Android原生方法')"</span> <span class="attr">value</span>=<span class="string">"显示原生Android的Toast"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>2.不通过window，这种比较常用，方便进行逻辑设置<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line">    function showToast()&#123;</div><div class="line">        var str = "JS调用并传递参数给Android原生方法"</div><div class="line">        test.showToast(str)</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"showToast()"</span> <span class="attr">value</span>=<span class="string">"显示原生Android的Toast"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="Android调用Js方法"><a href="#Android调用Js方法" class="headerlink" title="Android调用Js方法"></a>Android调用Js方法</h2><p>Android调用Js方法，并向其传递参数（android调用Js中alert方法，并向其传递显示的内容）</p>
+<p>android端：其中需要注意的是，这个showAlert(msg)方法一定要在android和js两边的名字一直<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> mButton.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">        String msg = <span class="string">"Andriod成功调用JS的Alert方法"</span>;</div><div class="line">        mWebView.loadUrl(<span class="string">"javascript:showAlert('"</span>+ msg +<span class="string">"');"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>html端：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line">    function showAlert(msg)&#123;</div><div class="line">        alert(msg)</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="Android与Js之间Json数据的传输与解析"><a href="#Android与Js之间Json数据的传输与解析" class="headerlink" title="Android与Js之间Json数据的传输与解析"></a>Android与Js之间Json数据的传输与解析</h2><p>android端：创建一个需要传输的数据model，然后创建这个数据model的实例，再然后通过Gson将这个数据model转换成为json格式的string，最后通过暴露给js原生方法的方式将数据传递给js。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@JavascriptInterface</span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">setChatData</span><span class="params">()</span></span>&#123;</div><div class="line">    String[] datas = <span class="keyword">new</span> String[]&#123;<span class="string">"衬衫"</span>,<span class="string">"羊毛衫"</span>,<span class="string">"A"</span>,<span class="string">"裤子"</span>,<span class="string">"高跟鞋"</span>,<span class="string">"袜子"</span>&#125;;</div><div class="line">    <span class="comment">//将实例化的数据model通过gson转换成json格式的string</span></div><div class="line">    String str = <span class="keyword">new</span> Gson().toJson(<span class="keyword">new</span> CountInfo(datas));</div><div class="line">    <span class="keyword">return</span> str;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>html端：通过暴露的标签点出android中对应的方法名获得到android传递过来的数据，然后通过JSON.parse方法将json格式String转换成为json对象，方便对数据进行调用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="built_in">JSON</span>.parse(test.setChatData())</div><div class="line">alert(str.datas[<span class="number">0</span>])</div></pre></td></tr></table></figure></p>
+<h2 id="最后完整代码展示"><a href="#最后完整代码展示" class="headerlink" title="最后完整代码展示"></a>最后完整代码展示</h2><p>android端：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">暴露JS的方法集类：</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaScripService</span> </span>&#123;</div><div class="line">    <span class="meta">@JavascriptInterface</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(String msg)</span></span>&#123;</div><div class="line">        ToastUtil.showShort(AppContext.getInstance(), msg);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">WebView设置类：</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">     <span class="comment">//进行webwiev的一堆设置</span></div><div class="line">     <span class="comment">//开启本地文件读取（默认为true，不设置也可以）</span></div><div class="line">     mWebView.getSettings().setAllowFileAccess(<span class="keyword">true</span>);</div><div class="line">     <span class="comment">//设置编码</span></div><div class="line">     mWebView.getSettings().setDefaultTextEncodingName(<span class="string">"utf-8"</span>);</div><div class="line">     <span class="comment">// 设置可以支持缩放</span></div><div class="line">     mWebView.getSettings().setSupportZoom(<span class="keyword">true</span>);</div><div class="line">     <span class="comment">// 设置出现缩放工具</span></div><div class="line">     mWebView.getSettings().setBuiltInZoomControls(<span class="keyword">true</span>);</div><div class="line">     <span class="comment">// 清除浏览器缓存</span></div><div class="line">     mWebView.clearCache(<span class="keyword">true</span>);</div><div class="line">     <span class="comment">// 开启脚本支持</span></div><div class="line">     mWebView.getSettings().setJavaScriptEnabled(<span class="keyword">true</span>);</div><div class="line">     <span class="comment">// android向js传递方法</span></div><div class="line">     JavaScripService jsInterface = <span class="keyword">new</span> JavaScripService();</div><div class="line">     mWebView.addJavascriptInterface(jsInterface, <span class="string">"test"</span>);</div><div class="line">     <span class="comment">// 获取Assets目录下的文件</span></div><div class="line">     mWebView.loadUrl(<span class="string">"file:///android_asset/echart/index.html"</span>);</div><div class="line">     <span class="comment">//在当前页面打开链接了</span></div><div class="line">     mWebView.setWebViewClient(<span class="keyword">new</span> WebViewClient() &#123;</div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123;</div><div class="line">               view.loadUrl(url);</div><div class="line">               <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">          &#125;</div><div class="line">     &#125;);</div><div class="line">     <span class="comment">//js加上这个就好啦！</span></div><div class="line">     mWebView.setWebChromeClient(<span class="keyword">new</span> WebChromeClient() &#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onJsAlert</span><span class="params">(WebView view, String url, String message, JsResult result)</span> </span>&#123;</div><div class="line">               <span class="keyword">return</span> <span class="keyword">super</span>.onJsAlert(view, url, message, result);</div><div class="line">          &#125;</div><div class="line">     &#125;);</div><div class="line">     mWebView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">               String msg = <span class="string">"Andriod成功调用JS的Alert方法"</span>;</div><div class="line">               countItemWebView.loadUrl(<span class="string">"javascript:showAlert('"</span>+ msg +<span class="string">"');"</span>);</div><div class="line">          &#125;</div><div class="line">     &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>html端：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">display_alert</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            alert(<span class="string">"我是一个JS自己的box"</span>)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">showToast</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> str = <span class="string">"JS调用并传递参数给Android原生方法"</span></div><div class="line">            test.showToast(str)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">showAlert</span>(<span class="params">msg</span>)</span>&#123;</div><div class="line">            alert(msg)</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"display_alert()"</span> <span class="attr">value</span>=<span class="string">"显示JS自己的Alert"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- &lt;input type="button" onclick="window.test.showToast('JS调用并传递参数给Android原生方法')" value="显示原生Android的Toast" /&gt; --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"showToast()"</span> <span class="attr">value</span>=<span class="string">"显示原生Android的Toast"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="En-hakkore Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/03/Android中JNI的使用/" rel="next" title="Android中JNI的使用">
+                <i class="fa fa-chevron-left"></i> Android中JNI的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/icon.jpg"
+               alt="En-hakkore" />
+          <p class="site-author-name" itemprop="name">En-hakkore</p>
+           
+              <p class="site-description motion-element" itemprop="description">我就是我，不一样的烟火！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yinleiquan" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Js调用Android方法"><span class="nav-number">2.</span> <span class="nav-text">Js调用Android方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android调用Js方法"><span class="nav-number">3.</span> <span class="nav-text">Android调用Js方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android与Js之间Json数据的传输与解析"><span class="nav-number">4.</span> <span class="nav-text">Android与Js之间Json数据的传输与解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后完整代码展示"><span class="nav-number">5.</span> <span class="nav-text">最后完整代码展示</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">En-hakkore</span>
+</div>
+
+
+#<div class="powered-by">
+#  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+#</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
