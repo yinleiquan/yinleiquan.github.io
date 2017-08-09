@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="蔚蓝博客">
 <meta property="og:description" content="咱们作为搞Android程序开发的，屏幕适配这一块一定是逃不掉的，那既然逃不了，那就干掉它。">
 <meta property="og:image" content="http://yjlove.top/2017/05/02/Android%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/01.jpg">
-<meta property="og:updated_time" content="2017-08-09T02:05:42.292Z">
+<meta property="og:updated_time" content="2017-08-09T02:08:50.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 屏幕适配">
 <meta name="twitter:description" content="咱们作为搞Android程序开发的，屏幕适配这一块一定是逃不掉的，那既然逃不了，那就干掉它。">
@@ -382,12 +382,13 @@
 </blockquote>
 <p>话不多说直接开搞！come on ！</p>
 <h2 id="Android的碎片化"><a href="#Android的碎片化" class="headerlink" title="Android的碎片化"></a>Android的碎片化</h2><p>​    众所周知，Android的碎片化问题已经不是一天两天的事情了，系统的碎片化，屏幕的碎片化，导致Android的发展方向如何…. 聊跑题了，话说回来哈，其实最为严重的就是屏幕的碎片化，截止到2014年就已经有18796中屏幕尺寸了，这是要干嘛？不过碎片又能如何，有我适配大法，天下任我行，哈哈哈….</p>
-<h2 id="乱中找规律"><a href="#乱中找规律" class="headerlink" title="乱中找规律"></a>乱中找规律</h2><p>​    通过各大权威统计机构统计，市面上主要运行的手机机型的分辨率无非就六种（1280 <em> 720、1920 </em> 1080、854 <em> 480、800 </em> 480、 960 <em> 540、1184 </em> 720），所以我们在屏幕适配之前先不要慌，要先确认我们产品需要适配那种机型，然后在具体的机型操作，在这里我们需要注意三种机型的存在。</p>
-<p><em>a. 1920 </em> 1080 目前最大分辨了的机型（5.0英寸），这将是手机分辨率的趋势，所以这种机型势必是要做适配的<br><em>b. 1280 </em> 720 这种机型是UI们最喜欢的机型，大部分UI会用这种分辨率来做基准进行切图和做效果图的<br><em>c.  480 </em> 320 这是Android的dp与px的基线分辨率，这个之后会有详解</p>
+<h2 id="乱中找规律"><a href="#乱中找规律" class="headerlink" title="乱中找规律"></a>乱中找规律</h2><p>​    通过各大权威统计机构统计，市面上主要运行的手机机型的分辨率无非就六种（1280 x 720、1920 x 1080、854 x 480、800 x 480、 960 x 540、1184 x 720），所以我们在屏幕适配之前先不要慌，要先确认我们产品需要适配那种机型，然后在具体的机型操作，在这里我们需要注意三种机型的存在。</p>
+<p><em>a. 1920 x 1080 目前最大分辨了的机型（5.0英寸），这将是手机分辨率的趋势，所以这种机型势必是要做适配的
+</em>b. 1280 x 720 这种机型是UI们最喜欢的机型，大部分UI会用这种分辨率来做基准进行切图和做效果图的<br>*c.  480 x 320 这是Android的dp与px的基线分辨率，这个之后会有详解</p>
 <h2 id="适配原理"><a href="#适配原理" class="headerlink" title="适配原理"></a>适配原理</h2><p>这个是一个基础，经常面试官会问到，需要了解一下哦。</p>
 <h4 id="先上几个屏幕适配的概念："><a href="#先上几个屏幕适配的概念：" class="headerlink" title="先上几个屏幕适配的概念："></a>先上几个屏幕适配的概念：</h4><p>1.屏幕像素密度：每英寸上的像素点数，单位dpi<br>2.屏幕分辨率：手机屏幕的像素点数，单位px<br>3.屏幕尺寸：手机对角线的大小，单位英寸<br>4.dp：android特有的  是一种密度计算，单位dip<br>5.sp：android用来规范字体大小的单位，可以在系统调整字体大小是发生变化</p>
 <h4 id="再说说dp与px的对应关系"><a href="#再说说dp与px的对应关系" class="headerlink" title="再说说dp与px的对应关系"></a>再说说dp与px的对应关系</h4><p>1.首先我们需要算出像素密度（dpi）<br>​    dpi = 根号下  高的平方 + 宽的平方 / 屏幕尺寸<br>2.然后有一个Android规定的对应表，这里以宽为例</p>
-<p>​    320 <em> 240        120                        1dp = 0.75px<br>​    480 </em> 320        160        BaseLine            1dp = 1px<br>​    800 <em> 480        240                        1dp = 1.5px<br>​    1280 </em> 720    320                        1dp = 2px<br>​    1920 * 1080    480                        1dp = 3px</p>
+<p>​    320 x 240        120                        1dp = 0.75px<br>​    480 x 320        160        BaseLine            1dp = 1px<br>​    800 x 480        240                        1dp = 1.5px<br>​    1280 x 720    320                        1dp = 2px<br>​    1920 x 1080    480                        1dp = 3px</p>
 <p>3.对应android工程下的dpi文件夹<br>​    ldpi            120<br>​    mdpi            160<br>​    hdpi            240<br>​    xhdpi        320<br>​    xxhdpi        480<br> <img src="http://yjlove.top/2017/05/02/Android%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/01.jpg" alt="01"></p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>根据自己的项目的需求进行适配方案的选择。</p>
 <h4 id="布局适配"><a href="#布局适配" class="headerlink" title="布局适配"></a>布局适配</h4><p>​    这种方式基本不会用到，除非做平板适配，因为这种方式需要写多套布局，太耗费开发成本。</p>
