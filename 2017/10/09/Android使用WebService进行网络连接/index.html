@@ -1,0 +1,779 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Android常用的是Http+Json模式，而我们今天就来个WebService+Json的模式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android中使用WebService进行网络搭建">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/Android使用WebService进行网络连接/index.html">
+<meta property="og:site_name" content="蔚蓝博客">
+<meta property="og:description" content="Android常用的是Http+Json模式，而我们今天就来个WebService+Json的模式。">
+<meta property="og:updated_time" content="2017-11-07T02:27:05.210Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android中使用WebService进行网络搭建">
+<meta name="twitter:description" content="Android常用的是Http+Json模式，而我们今天就来个WebService+Json的模式。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/09/Android使用WebService进行网络连接/"/>
+
+
+
+
+
+  <title>Android中使用WebService进行网络搭建 | 蔚蓝博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?89132f5058ab52afa295cc0a7b67055f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">蔚蓝博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/Android使用WebService进行网络连接/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="En-hakkore">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蔚蓝博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android中使用WebService进行网络搭建</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T15:15:13+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络连接/" itemprop="url" rel="index">
+                    <span itemprop="name">网络连接</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Android常用的是Http+Json模式，而我们今天就来个WebService+Json的模式。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>WebService    Ksoap2-android    Json   Gson   </p>
+</blockquote>
+<p>话不多说直接开搞！come on ！</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>1.在Android Studio app–libs目录下添加ksoap2-android-assembly-3.6.0-jar-with-dependencies.jar包<br>2.添加完jar包之后同步一下</p>
+<h2 id="网络对接"><a href="#网络对接" class="headerlink" title="网络对接"></a>网络对接</h2><p>1.首先你需要先开一个线程来处理网络请求。在这里我们使用AsyncTask，因为这种模式android已经为我们处理好UI线程的问题了。<br>2.然后直接上代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第1步：创建SoapObject对象，并指定WebService的命名空间和调用的方法名</span></div><div class="line">SoapObject request = <span class="keyword">new</span> SoapObject(NetConstant.WEB_WORKSPACE_NAME, mMethodName);</div><div class="line"><span class="comment">// 第2步：设置WebService方法的参数</span></div><div class="line">request.addProperty(<span class="string">"json"</span>, mJson);</div><div class="line"><span class="comment">// 第3步：创建SoapSerializationEnvelope对象，并指定WebService的版本</span></div><div class="line">SoapSerializationEnvelope envelope = <span class="keyword">new</span>   SoapSerializationEnvelope(SoapEnvelope.VER11);</div><div class="line"><span class="comment">// 设置bodyOut属性</span></div><div class="line">envelope.dotNet = <span class="keyword">false</span>;</div><div class="line">envelope.bodyOut = request;</div><div class="line">envelope.setOutputSoapObject(request);</div><div class="line"><span class="comment">// 第4步：创建HttpTransportSE对象，并指定WSDL文档的URL</span></div><div class="line">HttpTransportSE ht = <span class="keyword">new</span> HttpTransportSE(NetConstant.WEB_SERVICE_URL);</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="comment">// 第5步：调用WebService</span></div><div class="line">        ht.call(<span class="keyword">null</span>, envelope);</div><div class="line">        <span class="keyword">if</span> (envelope.getResponse() != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">// 第6步：使用getResponse方法获得WebService方法的返回结果</span></div><div class="line">            <span class="keyword">return</span> envelope.getResponse();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            LogUtil.i(<span class="string">"NetWorkTask"</span>, <span class="string">"请求无返回结果"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        mEx = e;</div><div class="line">        LogUtil.e(<span class="string">"NetWorkTask"</span>, <span class="string">"请求失败"</span>, e);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>3.然后判断envelope.getResponse()里边的内容来进行不用操作。</p>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><p>1.NetWorkTask.java 主要用于处理网络请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> android.os.AsyncTask;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.raysdata.smartcard.constant.NetConstant;</div><div class="line"><span class="keyword">import</span> com.raysdata.smartcard.utils.LogUtil;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.ksoap2.SoapEnvelope;</div><div class="line"><span class="keyword">import</span> org.ksoap2.serialization.SoapObject;</div><div class="line"><span class="keyword">import</span> org.ksoap2.serialization.SoapPrimitive;</div><div class="line"><span class="keyword">import</span> org.ksoap2.serialization.SoapSerializationEnvelope;</div><div class="line"><span class="keyword">import</span> org.ksoap2.transport.HttpTransportSE;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 作者 YLQ</div><div class="line"> * 时间 2017/10/23</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NetWorkTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String mMethodName;</div><div class="line">    <span class="keyword">private</span> Object mJson;</div><div class="line">    <span class="keyword">private</span> Exception mEx;</div><div class="line">    <span class="keyword">private</span> NetCallBack mCall;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NetWorkTask</span><span class="params">(String json, String methodName)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mMethodName = methodName;</div><div class="line">        <span class="keyword">this</span>.mJson = json;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">doInBackground</span><span class="params">(Object[] objects)</span> </span>&#123;</div><div class="line">        <span class="comment">// 第1步：创建SoapObject对象，并指定WebService的命名空间和调用的方法名</span></div><div class="line">        SoapObject request = <span class="keyword">new</span> SoapObject(NetConstant.WEB_WORKSPACE_NAME, mMethodName);</div><div class="line">        <span class="comment">// 第2步：设置WebService方法的参数</span></div><div class="line">        request.addProperty(<span class="string">"json"</span>, mJson);</div><div class="line">        <span class="comment">// 第3步：创建SoapSerializationEnvelope对象，并指定WebService的版本</span></div><div class="line">        SoapSerializationEnvelope envelope = <span class="keyword">new</span> SoapSerializationEnvelope(SoapEnvelope.VER11);</div><div class="line">        <span class="comment">// 设置bodyOut属性</span></div><div class="line">        envelope.dotNet = <span class="keyword">false</span>;</div><div class="line">        envelope.bodyOut = request;</div><div class="line">        envelope.setOutputSoapObject(request);</div><div class="line">        <span class="comment">// 第4步：创建HttpTransportSE对象，并指定WSDL文档的URL</span></div><div class="line">        HttpTransportSE ht = <span class="keyword">new</span> HttpTransportSE(NetConstant.WEB_SERVICE_URL);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// 第5步：调用WebService</span></div><div class="line">            ht.call(<span class="keyword">null</span>, envelope);</div><div class="line">            <span class="keyword">if</span> (envelope.getResponse() != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="comment">// 第6步：使用getResponse方法获得WebService方法的返回结果</span></div><div class="line">                <span class="keyword">return</span> envelope.getResponse();</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                LogUtil.i(<span class="string">"NetWorkTask"</span>, <span class="string">"请求无返回结果"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            mEx = e;</div><div class="line">            LogUtil.e(<span class="string">"NetWorkTask"</span>, <span class="string">"请求失败"</span>, e);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (o != <span class="keyword">null</span>) &#123;</div><div class="line">            mCall.onResponse((SoapPrimitive) o);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (mEx == <span class="keyword">null</span>) &#123;</div><div class="line">                mCall.onNoData(<span class="keyword">true</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                mCall.onFailure(mEx);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">netCall</span><span class="params">(NetCallBack call)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mCall = call;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.NetCallBack.java 主要用于通过接口方式传输数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.ksoap2.serialization.SoapPrimitive;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 作者 YLQ</div><div class="line"> * 时间 2017/10/23</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">NetCallBack</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(SoapPrimitive response)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onNoData</span><span class="params">(<span class="keyword">boolean</span> flag)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Exception e)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.实体类调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">netRecharge</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!NetUtil.isConnected()) &#123;</div><div class="line">        ToastUtil.showShort(<span class="string">"网络不可用"</span>);</div><div class="line">        mLoadingDialog.close();</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    mNetWork = <span class="keyword">new</span> NetWorkTask(JsonUtil.object2Json(mRechargeInfo), NetConstant.WEB_RECHARGE);</div><div class="line">    mNetWork.execute();</div><div class="line">    mNetWork.netCall(<span class="keyword">new</span> NetCallBack() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(SoapPrimitive response)</span> </span>&#123;</div><div class="line">        RechargeDealVO rechargeDealVO =</div><div class="line">             JsonUtil.json2Bean(response.getValue().toString(), RechargeDealVO.class);</div><div class="line">        <span class="keyword">if</span> (NetConstant.WEB_SUCCESS.equals(rechargeDealVO.getResultCode())) &#123;</div><div class="line">             mRechargeDealInfo = rechargeDealVO.getBody();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">             ToastUtil.showShort(rechargeDealVO.getResultMsg());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNoData</span><span class="params">(<span class="keyword">boolean</span> flag)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (flag) &#123;</div><div class="line">            ToastUtil.showShort(<span class="string">"网络请求无返回数据"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Exception e)</span> </span>&#123;</div><div class="line">        ToastUtil.showShort(NetConstant.WEB_TIME_OUT);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>1.命名控件名指的是后台项目的命名空间，方法名指的是后台对应接口处理的方法名，webservice传递的参数名指的是后台方法名中的形参名。<br>例：命名空间：”<a href="http://wsdl.webservice.tour.keengrandt.com/" target="_blank" rel="external">http://wsdl.webservice.tour.keengrandt.com/</a>“<br>例：方法名：”custWebservice”<br>例：参数名：”json”<br>2.Url地址：”<a href="http://xx.xx.xx.xx:xxxx/custWebservice?wsdl" target="_blank" rel="external">http://xx.xx.xx.xx:xxxx/custWebservice?wsdl</a>“</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="En-hakkore Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/04/Android与Js的互调传参/" rel="next" title="Android与Js的互调传参">
+                <i class="fa fa-chevron-left"></i> Android与Js的互调传参
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/icon.jpg"
+               alt="En-hakkore" />
+          <p class="site-author-name" itemprop="name">En-hakkore</p>
+           
+              <p class="site-description motion-element" itemprop="description">我就是我，不一样的烟火！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yinleiquan" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置"><span class="nav-number">1.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络对接"><span class="nav-number">2.</span> <span class="nav-text">网络对接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例代码"><span class="nav-number">3.</span> <span class="nav-text">示例代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">4.</span> <span class="nav-text">注意</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">En-hakkore</span>
+</div>
+
+
+#<div class="powered-by">
+#  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+#</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
