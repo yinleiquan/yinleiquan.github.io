@@ -99,13 +99,13 @@
 <meta property="og:url" content="http://yoursite.com/2017/11/13/多渠道打包/index.html">
 <meta property="og:site_name" content="蔚蓝博客">
 <meta property="og:description" content="多渠道打包的两种方式。">
-<meta property="og:image" content="http://yoursite.com/2017/11/13/多渠道打包/多渠道打包1.PNG">
-<meta property="og:image" content="http://yoursite.com/2017/11/13/多渠道打包/多渠道打包2.PNG">
-<meta property="og:updated_time" content="2017-11-13T01:45:28.478Z">
+<meta property="og:image" content="http://yjlove.top/2017/11/13/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%851.PNG">
+<meta property="og:image" content="http://yjlove.top/2017/11/13/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%852.PNG">
+<meta property="og:updated_time" content="2017-11-13T01:50:49.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多渠道打包">
 <meta name="twitter:description" content="多渠道打包的两种方式。">
-<meta name="twitter:image" content="http://yoursite.com/2017/11/13/多渠道打包/多渠道打包1.PNG">
+<meta name="twitter:image" content="http://yjlove.top/2017/11/13/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%851.PNG">
 
 
 
@@ -389,7 +389,7 @@
 <p>步骤二：配置集合productFlavor</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">productFlavor&#123;</div><div class="line">        AppChina&#123;</div><div class="line">            manifestPlaceholders=[UMENG_CHANNEL:<span class="string">"AppChina"</span>]</div><div class="line">        &#125;</div><div class="line">        wandoujia &#123;</div><div class="line">            manifestPlaceholders = [UMENG_CHANNEL: <span class="string">"wandoujia"</span>]</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>步骤三：然后走正常签名打包的流程 Build — Generate Signed APK，在Flavors中就有需要打的各种包了</p>
-<p> <img src="多渠道打包1.PNG" alt="多渠道打包1"></p>
+<p> <img src="http://yjlove.top/2017/11/13/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%851.PNG" alt="多渠道打包1"></p>
 <p>步骤四：可以通过友盟统计的方式，来验证apk是否区分渠道了</p>
 <h3 id="二，美团多渠道打包方案"><a href="#二，美团多渠道打包方案" class="headerlink" title="二，美团多渠道打包方案"></a>二，美团多渠道打包方案</h3><p>​    gradle方式打包有一个缺点，就是耗时非常多，不能够快速打包，而美团多渠道打包能够实现快速打包（1分钟900个不是梦），本人也是强烈建议各位看官使用这种方式。</p>
 <p>​    各位看官莫急，我们先了解了解这个原理如何，挺有意思的哦。</p>
@@ -408,7 +408,7 @@
 <p>​    2．获取渠道列表。 </p>
 <p>​    3．找到初始 apk </p>
 <p>​    4．遍历渠道号并写入 apk。</p>
-<p> <img src="多渠道打包2.PNG" alt="多渠道打包2"></p>
+<p> <img src="http://yjlove.top/2017/11/13/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%852.PNG" alt="多渠道打包2"></p>
 
       
     </div>
