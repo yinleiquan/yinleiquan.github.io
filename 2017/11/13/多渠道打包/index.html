@@ -93,16 +93,19 @@
 
 
 
-<meta name="description" content="react native 的基础练习。">
+<meta name="description" content="多渠道打包的两种方式。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android React Native 基础">
-<meta property="og:url" content="http://yoursite.com/2017/04/09/Android React Native 基础/index.html">
+<meta property="og:title" content="多渠道打包">
+<meta property="og:url" content="http://yoursite.com/2017/11/13/多渠道打包/index.html">
 <meta property="og:site_name" content="蔚蓝博客">
-<meta property="og:description" content="react native 的基础练习。">
-<meta property="og:updated_time" content="2017-07-10T05:15:38.898Z">
+<meta property="og:description" content="多渠道打包的两种方式。">
+<meta property="og:image" content="http://yoursite.com/2017/11/13/多渠道打包/多渠道打包1.PNG">
+<meta property="og:image" content="http://yoursite.com/2017/11/13/多渠道打包/多渠道打包2.PNG">
+<meta property="og:updated_time" content="2017-11-13T01:45:28.478Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android React Native 基础">
-<meta name="twitter:description" content="react native 的基础练习。">
+<meta name="twitter:title" content="多渠道打包">
+<meta name="twitter:description" content="多渠道打包的两种方式。">
+<meta name="twitter:image" content="http://yoursite.com/2017/11/13/多渠道打包/多渠道打包1.PNG">
 
 
 
@@ -130,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/09/Android React Native 基础/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/13/多渠道打包/"/>
 
 
 
 
 
-  <title>Android React Native 基础 | 蔚蓝博客</title>
+  <title>多渠道打包 | 蔚蓝博客</title>
   
 
 
@@ -285,7 +288,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/09/Android React Native 基础/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/13/多渠道打包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="En-hakkore">
@@ -302,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android React Native 基础</h1>
+          <h1 class="post-title" itemprop="name headline">多渠道打包</h1>
         
 
         <div class="post-meta">
@@ -314,8 +317,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-09T10:15:13+08:00">
-                2017-04-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-13T08:17:12+08:00">
+                2017-11-13
               </time>
             
 
@@ -337,8 +340,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React-Native/" itemprop="url" rel="index">
-                    <span itemprop="name">React Native</span>
+                  <a href="/categories/运维篇/" itemprop="url" rel="index">
+                    <span itemprop="name">运维篇</span>
                   </a>
                 </span>
 
@@ -361,7 +364,7 @@
 
           
               <div class="post-description">
-                  react native 的基础练习。
+                  多渠道打包的两种方式。
               </div>
           
 
@@ -376,17 +379,36 @@
 
       
         <blockquote>
-<p>React Native</p>
+<p>gradle   META-INF   python</p>
 </blockquote>
-<h2 id="React-Native-组件"><a href="#React-Native-组件" class="headerlink" title="React Native 组件"></a>React Native 组件</h2><p>在RN项目中，所有展示的界面都可以看成是一个组件（Component），根据功能和逻辑上复杂度的不同，不同大大小小的组件有不同的逻辑代码，不过它们都遵循同样的代码结构，都由一下几部分组成。</p>
-<p>1.包和其他组件的引用部分<br>这一部分利用node.js的require机制来引入react-native或者其他node.js包，以及引入其他第三发api和组件等。</p>
-<p>2.组件类的声明<br>这一部分用于构造组件的状态和具体的展示结构，其中render属性尤为重要，用于渲染整个组件的结构和布局。其中组件中重要的生命周期也发生在一部分。</p>
-<p>3.组件样式的声明<br>这一部分通过StyleSheet.create来实例化样式对象，其中的内容为Json形式的React Native样式。样式规范来源于CSS3。</p>
-<h2 id="ReactNative组件生命周期"><a href="#ReactNative组件生命周期" class="headerlink" title="ReactNative组件生命周期"></a>ReactNative组件生命周期</h2><p>一个RN组件的生命周期分为实例化（mount）、存在期（update）和销毁期（unmount），其中最为常用的是实例化期，该时期包含组件的构建和展示。需要根据几个生命周期的方法控制好组件的展示和逻辑的处理。</p>
-<p>1.实例化时期（5个阶段）<br>getDefualtProps()————————实例化时调用之后不会再调用，用来初始化固定值，如静态数据源<br>getInitialState()—————————初始化状态值，可用于改变组件状态<br>componentWillMount()—————–组件将被加载前调用<br>render()————————————-组件的渲染（尤为重要）<br>componentDidMount()——————组件已加载、渲染完成</p>
-<p>注：render方法通过return来返回一个jsx，因为是通过DOM解析布局，所以只能返回一个顶级元素，componentDidMount方法即执行hook函数，一般用来网络数据的异步加载，开发时可以通过fetch API来进行网络请求。</p>
-<p>2.存在期<br>一般用来处理用户交互，如：点击事件等。（并不是很常用）<br>componentWillReceiveProps()———-指父元素对组件的props或state进行了修改<br>shouldComponentUpdate()—————一般用于优化，可以返回false或true是否进行渲染<br>componentWillUpdate()——————-组件刷新前调用，类似于componentWillMount方法<br>componentDidUpdate()——————–更新后的hook</p>
-<p>3.销毁期<br>用于清理一些无用的内容，如：点击事件的listener，只有一个方法：componentWillUnmount()</p>
+<h2 id="多渠道打包"><a href="#多渠道打包" class="headerlink" title="多渠道打包"></a>多渠道打包</h2><p>​    在开发完一个应用即将要上线的时候，应用会选择很多个应用平台去上线项目，并且通过后台去分析每个平台的下载量，这样我们就有必要对每个平台做一个唯一标识了，而往往这个标识会存放在安装包中，每个下载平台上线的是带有标识的安装包，这样就能够区分，不同平台的应用下载量了。</p>
+<p>​    那么，问题又来，一般上线的项目都会有很多的渠道可供下载的，这么多带有唯一标识和合法签名的安装包难道需要我们一个一个手动打包吗？哈哈（我长笑一声），当然不能手动来了。下面就为大家带来几种自动化打包方案。</p>
+<h3 id="一-，gradle自动化打包方案"><a href="#一-，gradle自动化打包方案" class="headerlink" title="一 ，gradle自动化打包方案"></a>一 ，gradle自动化打包方案</h3><p>​    这种打包方案是Android Studio自带的方案，比较原生。</p>
+<p>步骤一：使用占位符的方式在清单文件中配置渠道</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta-data</span> <span class="attr">android:value</span>=<span class="string">"573e8baae0f55a3532000010"</span> <span class="attr">android:name</span>=<span class="string">"UMENG_APPKEY"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta-data</span> <span class="attr">android:value</span>=<span class="string">"$&#123;UMENG_CHANNEL&#125;"</span> <span class="attr">android:name</span>=<span class="string">"UMENG_CHANNEL"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p>步骤二：配置集合productFlavor</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">productFlavor&#123;</div><div class="line">        AppChina&#123;</div><div class="line">            manifestPlaceholders=[UMENG_CHANNEL:<span class="string">"AppChina"</span>]</div><div class="line">        &#125;</div><div class="line">        wandoujia &#123;</div><div class="line">            manifestPlaceholders = [UMENG_CHANNEL: <span class="string">"wandoujia"</span>]</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>步骤三：然后走正常签名打包的流程 Build — Generate Signed APK，在Flavors中就有需要打的各种包了</p>
+<p> <img src="多渠道打包1.PNG" alt="多渠道打包1"></p>
+<p>步骤四：可以通过友盟统计的方式，来验证apk是否区分渠道了</p>
+<h3 id="二，美团多渠道打包方案"><a href="#二，美团多渠道打包方案" class="headerlink" title="二，美团多渠道打包方案"></a>二，美团多渠道打包方案</h3><p>​    gradle方式打包有一个缺点，就是耗时非常多，不能够快速打包，而美团多渠道打包能够实现快速打包（1分钟900个不是梦），本人也是强烈建议各位看官使用这种方式。</p>
+<p>​    各位看官莫急，我们先了解了解这个原理如何，挺有意思的哦。</p>
+<p>​    原理：每一次正常打包的过程粗略的讲是这样的.R/.java — .class — .dex — resources.ap_ — release.keystore — signed apk，这一套过程是很需要时间的，如果打N多个这样的包，需要多少时间可想而知了，所以美团的技术团队通过META-INF特殊性和读取文件名的方式就轻松跳过了这么多流程。</p>
+<p>​    大家还记得META-INF特殊性吗？就是在签名apk的时候，会将应用的资源目录结构记载下来，并在每次安装的时候进行签名验证，所以当我们修改资源目录之后就不能安装了，但是每一次的签名验证不会验证META-INF文件夹下的目录结构，所以我们将一个带有渠道名字的文件放在这个文件夹下，并通过不断修改这个文件和获取这个文件带有的渠道名，就是实现快速多渠道的打包。</p>
+<p>​    好吧，说了好多，直接展示实现步骤吧！</p>
+<p>步骤一：下载相关工具<a href="https://github.com/GavinCT/AndroidMultiChannelBuildTool" target="_blank" rel="external">https://github.com/GavinCT/AndroidMultiChannelBuildTool</a></p>
+<p>步骤二：生成一个已经签名的 apk 程序内部使用 java工具获取 meta-data 下面的渠道变量 com.yinleiquan.myapp.MainActivity</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showChannel</span><span class="params">(View view)</span></span>&#123;</div><div class="line">        <span class="comment">// 获 取 当 前 apk 的 渠 道 变 量 值 发 送 给 服 务 端</span></div><div class="line">        String channel = ChannelUtil.getChannel(<span class="keyword">this</span>);</div><div class="line">        Log.i(TAG, <span class="string">"onCreate: "</span>+channel);</div><div class="line">        Toast.makeText(<span class="keyword">this</span>,<span class="string">"channel="</span>+channel,Toast.LENGTH_LONG).show();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>​    其中的ChannelUtil 可以从下载的工具代码里面复制。</p>
+<p>步骤三：这个生成多个安装包的脚本工具使用的python，所以我们要想使用需要安装python环境。</p>
+<p>​    下载地址：<a href="https://www.python.org/downloads/windows/" target="_blank" rel="external">https://www.python.org/downloads/windows/</a></p>
+<p>​    安装过成不多陈述了，详细步骤可参照<a href="http://jingyan.baidu.com/article/e73e26c0bad76224acb6a766.html" target="_blank" rel="external">http://jingyan.baidu.com/article/e73e26c0bad76224acb6a766.html</a></p>
+<p>步骤四：在安装python完毕之后，就可以使用这个脚本工具了。</p>
+<p>​    1．首先创建一个空文件，等待写入 META-INF 目录作为 channel_xxx 文件 </p>
+<p>​    2．获取渠道列表。 </p>
+<p>​    3．找到初始 apk </p>
+<p>​    4．遍历渠道号并写入 apk。</p>
+<p> <img src="多渠道打包2.PNG" alt="多渠道打包2"></p>
 
       
     </div>
@@ -439,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/09/Android React Native 环境搭建/" rel="next" title="Android React Native 环境搭建">
-                <i class="fa fa-chevron-left"></i> Android React Native 环境搭建
+              <a href="/2017/10/09/Android使用WebService进行网络连接/" rel="next" title="Android中使用WebService进行网络搭建">
+                <i class="fa fa-chevron-left"></i> Android中使用WebService进行网络搭建
               </a>
             
           </div>
@@ -448,10 +470,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/02/Android屏幕适配/" rel="prev" title="Android 屏幕适配">
-                Android 屏幕适配 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -582,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native-组件"><span class="nav-number">1.</span> <span class="nav-text">React Native 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReactNative组件生命周期"><span class="nav-number">2.</span> <span class="nav-text">ReactNative组件生命周期</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多渠道打包"><span class="nav-number">1.</span> <span class="nav-text">多渠道打包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-，gradle自动化打包方案"><span class="nav-number">1.1.</span> <span class="nav-text">一 ，gradle自动化打包方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二，美团多渠道打包方案"><span class="nav-number">1.2.</span> <span class="nav-text">二，美团多渠道打包方案</span></a></li></ol></li></ol></div>
             
 
           </div>
